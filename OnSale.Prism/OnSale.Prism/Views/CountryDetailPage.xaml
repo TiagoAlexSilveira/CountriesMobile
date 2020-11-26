@@ -3,6 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="OnSale.Prism.Views.CountryDetailPage">
-  
+             x:Class="OnSale.Prism.Views.CountryDetailPage"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+
+    <ContentPage.Content>
+
+        <StackLayout>
+            <ffimageloadingsvg:SvgCachedImage Grid.Column="0"
+                                 Aspect="AspectFill"
+                                Source="{Binding Country.flag}"
+                                CacheDuration= "50"
+                                 Margin="5" />
+
+            <Label Text="{Binding Country.name}"></Label>
+        </StackLayout>
+        
+    </ContentPage.Content>
+    
+    
 </ContentPage>
