@@ -74,7 +74,7 @@ namespace OnSale.Common.Services
                     };
                 }
 
-                var rates = JsonConvert.DeserializeObject<List<Country>>(result);
+                var rates = JsonConvert.DeserializeObject<List<Country>>(result);                
 
                 return new Response
                 {

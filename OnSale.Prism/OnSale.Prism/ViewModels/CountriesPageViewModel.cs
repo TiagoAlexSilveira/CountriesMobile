@@ -1,4 +1,5 @@
 ﻿using OnSale.Common.Entities;
+using OnSale.Common.Helpers;
 using OnSale.Common.Responses;
 using OnSale.Common.Services;
 using OnSale.Prism.ItemViewModels;
@@ -21,6 +22,7 @@ namespace OnSale.Prism.ViewModels
 
         private string _search;
         private List<Country> _myCountries;
+        private List<Border> _myBorders;
         private DelegateCommand _searchCommand;
 
         private ObservableCollection<CountryItemViewModel> _countries;
@@ -32,7 +34,9 @@ namespace OnSale.Prism.ViewModels
             Title = "Countries";
             _navigationService = navigationService;
             _apiService = apiService;
+            _myBorders = new List<Border>();
             LoadCountriesAsync();
+
         }
 
         public DelegateCommand SearchCommand => _searchCommand ?? (_searchCommand = new DelegateCommand(ShowCountries));
@@ -92,6 +96,8 @@ namespace OnSale.Prism.ViewModels
             //List<Country> myCountries = (List<Country>)response.Result;
             //Countries = new ObservableCollection<Country>(myCountries);
             _myCountries = (List<Country>)response.Result;
+            CountryGlobal.CountryGlobalList = _myCountries;
+
             ShowCountries();
         }
 
@@ -121,9 +127,31 @@ namespace OnSale.Prism.ViewModels
                     name = p.name,
                     capital = p.capital,
                     flag = p.flag,
+                    topLevelDomain = p.topLevelDomain,
+                    alpha2Code = p.alpha2Code,
+                    alpha3Code = p.alpha3Code,
+                    callingCodes = p.callingCodes,
+                    altSpellings = p.altSpellings,
+                    region = p.region ?? "N/A",
+                    subregion = p.subregion ?? "N/A",
+                    population = p.population ?? "N/A",
+                    latlng = p.latlng,
+                    demonym = p.demonym ?? "N/A",
+                    area = p.area ?? "N/A",
+                    gini = p.gini ?? "N/A",
+                    timezones = p.timezones,
+                    borders = p.borders,
+                    nativeName = p.nativeName,
+                    numericCode = p.numericCode,
+                    currencies = p.currencies,
+                    languages = p.languages,
+                    translations = p.translations,
+                    regionalBlocs = p.regionalBlocs,
+                    cioc = p.cioc,
 
                 })
                      .ToList());
+
 
             }
             else
@@ -135,11 +163,33 @@ namespace OnSale.Prism.ViewModels
                     name = p.name,
                     capital = p.capital,
                     flag = p.flag,
+                    topLevelDomain = p.topLevelDomain,
+                    alpha2Code = p.alpha2Code,
+                    alpha3Code = p.alpha3Code,
+                    callingCodes = p.callingCodes,
+                    altSpellings = p.altSpellings,
+                    region = p.region,
+                    subregion = p.subregion,
+                    population = p.population,
+                    latlng = p.latlng,
+                    demonym = p.demonym,
+                    area = p.area,
+                    gini = p.gini,
+                    timezones = p.timezones,
+                    borders = p.borders,
+                    nativeName = p.nativeName,
+                    numericCode = p.numericCode,
+                    currencies = p.currencies,
+                    languages = p.languages,
+                    translations = p.translations,
+                    regionalBlocs = p.regionalBlocs,
+                    cioc = p.cioc
 
                 })
                     .Where(p => p.name.ToLower().Contains(Search.ToLower()))
                     .ToList());
-                
+
+               
             }
         }
     }

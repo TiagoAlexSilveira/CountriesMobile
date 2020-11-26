@@ -20,6 +20,7 @@ namespace OnSale.Prism
         protected override async void OnInitialized()
         {
             SyncfusionLicenseProvider.RegisterLicense("MzA2MTU3QDMxMzgyZTMyMmUzMGI4Q0p0ZEYzaS9ORjJSNVkrL2hQSzlxOWFwMWxrMndYSHp6Tk11UE16VWM9");
+            Sharpnado.HorizontalListView.Initializer.Initialize(true, false);
 
             InitializeComponent();
 

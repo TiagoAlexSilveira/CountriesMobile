@@ -4,21 +4,97 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="OnSale.Prism.Views.CountryDetailPage"
-             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" 
+             Title="Country Details">
 
-    <ContentPage.Content>
-
+    <ScrollView>
         <StackLayout>
-            <ffimageloadingsvg:SvgCachedImage Grid.Column="0"
-                                 Aspect="AspectFill"
-                                Source="{Binding Country.flag}"
-                                CacheDuration= "50"
-                                 Margin="5" />
+     
+        <ffimageloadingsvg:SvgCachedImage Grid.Column="0"
+                                Aspect="AspectFill"
+                            Source="{Binding Country.flag}"
+                            CacheDuration= "50"
+                                Margin="15" />
+            
+        <Label Text="{Binding Country.name}" HorizontalOptions="Center" FontAttributes="Bold" ></Label>
+        <Label Text="{Binding Country.alpha3Code}" HorizontalOptions="Center" FontAttributes="Bold" ></Label>
 
-            <Label Text="{Binding Country.name}"></Label>
+        <Grid BackgroundColor="LightGray" HeightRequest="1" Margin="15,10,0,10"> </Grid>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.2"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="1" Grid.Row="0" Text="Region"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+            <Label Grid.Column="1" Grid.Row="1" Text="{Binding Country.region}"  HorizontalTextAlignment="Center" ></Label>
+            <Label Grid.Column="2" Grid.Row="0" Text="SubRegion"  HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+            <Label Grid.Column="2" Grid.Row="1" Text="{Binding Country.subregion}" HorizontalTextAlignment="Center" ></Label>
+            <Label Grid.Column="3" Grid.Row="0" Text="Population"  HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+            <Label Grid.Column="3" Grid.Row="1" Text="{Binding Country.population}"  HorizontalTextAlignment="Center" ></Label>
+            <Label Grid.Column="4" Grid.Row="0" Text="Gini"  HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+            <Label Grid.Column="4" Grid.Row="1" Text="{Binding Country.gini}"  HorizontalTextAlignment="Center" ></Label>
+
+        </Grid>
+
+        <Grid BackgroundColor="LightGray" HeightRequest="1" Margin="15,10,15,10"></Grid>
+
+            <Grid BackgroundColor="LightGray" Margin="15,10,15,10">
+                <Label Text="Bordering Countries" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+            </Grid>
+
+            <CarouselView ItemsSource="{Binding Country.Borders}">
+                <CarouselView.ItemTemplate >
+                    <DataTemplate>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout HorizontalOptions="Center" Grid.Column="1">
+
+                                <ffimageloadingsvg:SvgCachedImage 
+                                        Aspect="AspectFill"
+                                        Source="{Binding BorderFlag}"
+                                        CacheDuration= "50"
+                                        Margin="5"
+                                        RetryCount= "3"
+                                        RetryDelay= "600"
+                                        WidthRequest="200"
+                                     
+                                        />
+                                <Label HorizontalTextAlignment="Center" Text="{Binding BorderName}"></Label>
+                            </StackLayout>
+                        </Grid>
+
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <Grid BackgroundColor="LightGray" HeightRequest="1" Margin="15,10,15,10"></Grid>
+
+            <Grid BackgroundColor="LightGray" Margin="15,10,15,10">
+                <Label Text="Languages" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+            </Grid>
+            
+            
+
+
         </StackLayout>
-        
-    </ContentPage.Content>
-    
-    
+    </ScrollView>
 </ContentPage>

@@ -13,7 +13,6 @@ namespace OnSale.Prism.ViewModels
     {
         private Country _country;
 
-        private ObservableCollection<ProductImage> _images;
 
         public CountryDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
@@ -27,13 +26,7 @@ namespace OnSale.Prism.ViewModels
             set => SetProperty(ref _country, value);
         }
 
-        //mudar isto
-        public ObservableCollection<ProductImage> Images
-        {
-            get => _images;
-            set => SetProperty(ref _images, value);
-        }
-
+    
 
         //mudar isto
         public override void OnNavigatedTo(INavigationParameters parameters)
@@ -43,8 +36,9 @@ namespace OnSale.Prism.ViewModels
             if (parameters.ContainsKey("country"))
             {
                 Country = parameters.GetValue<Country>("country");
+                            
                 Title = Country.name;
-                //Images = new ObservableCollection<CountryImage>(Product.ProductImages);
+               
             }
         }
     }
