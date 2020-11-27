@@ -18,6 +18,7 @@
             
         <Label Text="{Binding Country.name}" HorizontalOptions="Center" FontAttributes="Bold" ></Label>
         <Label Text="{Binding Country.alpha3Code}" HorizontalOptions="Center" FontAttributes="Bold" ></Label>
+        <Label Text="{Binding Country.nativeName}" HorizontalOptions="Center" FontAttributes="Bold" ></Label>
 
         <Grid BackgroundColor="LightGray" HeightRequest="1" Margin="15,10,0,10"> </Grid>
 
@@ -26,7 +27,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>      
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -47,15 +48,17 @@
             <Label Grid.Column="4" Grid.Row="0" Text="Gini"  HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
             <Label Grid.Column="4" Grid.Row="1" Text="{Binding Country.gini}"  HorizontalTextAlignment="Center" ></Label>
 
+
         </Grid>
 
-        <Grid BackgroundColor="LightGray" HeightRequest="1" Margin="15,10,15,10"></Grid>
+            <Grid BackgroundColor="LightGray" HeightRequest="1" Margin="15,10,15,10"></Grid>
 
-            <Grid BackgroundColor="LightGray" Margin="15,10,15,10">
+            <Grid BackgroundColor="LightBlue" Margin="15,10,15,10">
                 <Label Text="Bordering Countries" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
             </Grid>
 
-            <CarouselView ItemsSource="{Binding Country.Borders}">
+            <CarouselView HeightRequest="150" ItemsSource="{Binding Country.Borders}" IndicatorView="indicatorView">
+                
                 <CarouselView.ItemTemplate >
                     <DataTemplate>
 
@@ -85,14 +88,162 @@
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
+            <IndicatorView x:Name="indicatorView" 
+                   IndicatorColor="LightGray"
+                   SelectedIndicatorColor="DarkGray"
+                   HorizontalOptions="Center">
+                
+            </IndicatorView>
 
             <Grid BackgroundColor="LightGray" HeightRequest="1" Margin="15,10,15,10"></Grid>
 
-            <Grid BackgroundColor="LightGray" Margin="15,10,15,10">
+            <Grid BackgroundColor="LightBlue" Margin="15,10,15,10">
+                <Label Text="Translations" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.2"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+
+                <Label Grid.Column="1" Grid.Row="0" Text="de"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Country.translations.de}"  HorizontalTextAlignment="Center" ></Label>
+                <Label Grid.Column="2" Grid.Row="0" Text="es"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="2" Grid.Row="1" Text="{Binding Country.translations.es}"  HorizontalTextAlignment="Center"></Label>
+                <Label Grid.Column="3" Grid.Row="0" Text="fr"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="3" Grid.Row="1" Text="{Binding Country.translations.fr}"  HorizontalTextAlignment="Center"></Label>
+                <Label Grid.Column="1" Grid.Row="2" Text="ja"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Country.translations.ja}"  HorizontalTextAlignment="Center"></Label>
+                <Label Grid.Column="2" Grid.Row="2" Text="it"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="2" Grid.Row="3" Text="{Binding Country.translations.it}"  HorizontalTextAlignment="Center"></Label>
+                <Label Grid.Column="3" Grid.Row="2" Text="br"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="3" Grid.Row="3" Text="{Binding Country.translations.br}"  HorizontalTextAlignment="Center"></Label>
+                <Label Grid.Column="1" Grid.Row="4" Text="pt"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="1" Grid.Row="5" Text="{Binding Country.translations.pt}"  HorizontalTextAlignment="Center"></Label>
+                <Label Grid.Column="2" Grid.Row="4" Text="nl"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="2" Grid.Row="5" Text="{Binding Country.translations.nl}"  HorizontalTextAlignment="Center"></Label>
+                <Label Grid.Column="3" Grid.Row="4" Text="hr"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="3" Grid.Row="5" Text="{Binding Country.translations.hr}"  HorizontalTextAlignment="Center"></Label>
+                <Label Grid.Column="2" Grid.Row="6" Text="fa"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="2" Grid.Row="7" Text="{Binding Country.translations.fa}"  HorizontalTextAlignment="Center" ></Label>
+            </Grid>
+
+            <Grid BackgroundColor="LightGray" HeightRequest="1" Margin="15,10,15,10"></Grid>
+
+            <Grid BackgroundColor="LightBlue" Margin="15,10,15,10">
+                <Label Text="Currencies" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+            </Grid>
+
+            <CollectionView HeightRequest="100" ItemsSource="{Binding Country.currencies}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.2" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="0.3" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="0.3" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="0.2" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="1" Text="{Binding code}"  HorizontalTextAlignment="Center" ></Label>
+                                <Label Grid.Column="2" Text="|"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                                <Label Grid.Column="3" Text="{Binding name}"  HorizontalTextAlignment="Center" ></Label>
+                                <Label Grid.Column="4" Text="|"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                                <Label Grid.Column="5" Text="{Binding symbol}"  HorizontalTextAlignment="Center"  ></Label>
+
+                            </Grid>
+
+                            <Grid BackgroundColor="RoyalBlue" HeightRequest="1" Margin="15,5,15,5"></Grid>
+                        </StackLayout>
+                        
+                
+
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Grid BackgroundColor="LightGray" HeightRequest="1" Margin="15,10,15,10"></Grid>
+
+            <Grid BackgroundColor="LightBlue" Margin="15,10,15,10">
+                <Label Text="Location" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="1" Grid.Row="0" Text="Latitude"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="2" Grid.Row="0" Text="{Binding Country.latlng[0]}"  HorizontalTextAlignment="Center" ></Label>
+                <Label Grid.Column="1" Grid.Row="1" Text="Longitude"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                <Label Grid.Column="2" Grid.Row="1" Text="{Binding Country.latlng[1]}"  HorizontalTextAlignment="Center" ></Label>
+                
+            </Grid>
+
+            <Grid BackgroundColor="LightGray" HeightRequest="1" Margin="15,10,15,10"></Grid>
+
+            <Grid BackgroundColor="LightBlue" Margin="15,10,15,10">
                 <Label Text="Languages" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
             </Grid>
-            
-            
+
+            <CollectionView HeightRequest="300" ItemsSource="{Binding Country.languages}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        
+                        <StackLayout>
+                            <Frame BorderColor="LightBlue" CornerRadius="15">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.2" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="0.2" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="1" Text="{Binding name}"  HorizontalTextAlignment="Center"  ></Label>
+                                    <Label Grid.Column="2" Text="{Binding nativeName}"  HorizontalTextAlignment="Center" ></Label>
+                                    <Label Grid.Column="3" Text="{Binding iso639_2}"  HorizontalTextAlignment="Center" FontAttributes="Bold" ></Label>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                     
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
 
 
         </StackLayout>

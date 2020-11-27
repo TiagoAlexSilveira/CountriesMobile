@@ -16,7 +16,7 @@ namespace OnSale.Prism.ViewModels
 
         public CountryDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "Details";
+            Title = "Details";            
         }
 
 
